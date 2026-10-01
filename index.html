@@ -1,1 +1,173 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ottobre Rosa 2026 - Gazzera per la Prevenzione</title>
+    <style>
+        :root {
+            --primary-pink: #e6007e;
+            --light-pink: #fce4ec;
+            --dark-pink: #880e4f;
+            --text-color: #333333;
+            --bg-color: #fff9fa;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--primary-pink);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin-top: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-pink);
+        }
+
+        .poster-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .audio-player-container {
+            text-align: center;
+            background-color: var(--light-pink);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 500px;
+            margin-top: 1rem;
+        }
+
+        h2 {
+            color: var(--dark-pink);
+            border-bottom: 2px solid var(--light-pink);
+            padding-bottom: 0.5rem;
+        }
+
+        ul {
+            padding-left: 1.2rem;
+        }
+
+        li {
+            margin-bottom: 0.8rem;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: var(--primary-pink);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #f1f1f1;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 3rem;
+        }
+
+        .ai-notice {
+            font-size: 0.85rem;
+            color: #777;
+            font-style: italic;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Ottobre Rosa 2026</h1>
+        <p>Gazzera per la Prevenzione • Negozi in Rosa</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- SEZIONE MUSICA / JINGLE -->
+        <div class="card">
+            <h2>🎵 Ascolta il Jingle Ufficiale</h2>
+            <p>Ascolta la canzone dedicata all'iniziativa <strong>"Ogni Spesa è un Gesto d'Amore"</strong>:</p>
+            <div class="audio-player-container">
+                <p><strong>Il nostro patto di cuore</strong> (Jingle Ottobre Rosa)</p>
+                <audio controls>
+                    <source src="musica.mp3" type="audio/mpeg">
+                    Il tuo browser non supporta il riproduttore audio.
+                </audio>
+                <p class="ai-notice">Nota: Brano e testo generati tramite intelligenza artificiale per scopi promozionali.</p>
+            </div>
+        </div>
+
+        <!-- SEZIONE VOLANTINO -->
+        <div class="card">
+            <h2>📄 Il Volantino dell'Iniziativa</h2>
+            <img src="volantino.jpg" alt="Volantino Ottobre Rosa 2026 Gazzera" class="poster-img">
+        </div>
+
+        <!-- SEZIONE INFORMAZIONI -->
+        <div class="card">
+            <h2>💖 Come Funziona l'Iniziativa</h2>
+            <p>Per tutto il mese di ottobre, fare gli acquisti nei negozi della Gazzera non significa solo scegliere la qualità e la cortesia di vicinato, ma <span class="highlight">finanziare direttamente la lotta contro il tumore al seno</span>.</p>
+            
+            <ul>
+                <li><strong>Fai la tua spesa:</strong> Acquista nei negozi e servizi aderenti della Gazzera e richiedi la tua <strong>PINK GIFT CARD GAZZERA</strong>.</li>
+                <li><strong>Partecipa:</strong> Compila la card e imbucala nella borsetta rosa presente nei negozi.</li>
+                <li><strong>Donazione:</strong> L'Associazione Commercianti Artigiani Gazzera donerà 1 € per ciascuna carta raccolta alla ricerca sul cancro.</li>
+                <li><strong>Premi:</strong> A fine ottobre verranno estratte 5 Pink Gift Card che riceveranno ciascuna un buono spesa da 25 €.</li>
+            </ul>
+
+            <p style="text-align: center; font-size: 1.1rem; margin-top: 1.5rem;">
+                <strong>Più volte scegli la Gazzera, più la prevenzione cresce!</strong>
+            </p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p><strong>Associazione Commercianti Artigiani Gazzera</strong></p>
+        <p>In collaborazione con il Comune di Venezia</p>
+        <p>Info: 351 8731413</p>
+    </footer>
+
+</body>
+</html>
