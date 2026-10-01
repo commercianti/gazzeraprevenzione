@@ -5,169 +5,196 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ottobre Rosa 2026 - Gazzera per la Prevenzione</title>
     <style>
-        :root {
-            --primary-pink: #e6007e;
-            --light-pink: #fce4ec;
-            --dark-pink: #880e4f;
-            --text-color: #333333;
-            --bg-color: #fff9fa;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        header {
-            background-color: var(--primary-pink);
-            color: white;
+        body {
+            background-color: #0f0f12;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        /* Overlay di benvenuto per sbloccare l'audio */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 15, 18, 0.96);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            backdrop-filter: blur(10px);
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            padding: 20px;
             text-align: center;
-            padding: 2rem 1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        header h1 {
-            margin: 0;
+        .overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .overlay h1 {
+            color: #ff4081;
             font-size: 2.2rem;
+            margin-bottom: 10px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
-        header p {
-            margin-top: 0.5rem;
+        .overlay p {
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .btn-start {
+            background: linear-gradient(135deg, #ff4081, #d81b60);
+            color: white;
+            border: none;
+            padding: 16px 36px;
             font-size: 1.2rem;
-            font-weight: 300;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 64, 129, 0.5);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .container {
+        .btn-start:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 64, 129, 0.8);
+        }
+
+        /* Contenitore principale */
+        .main-container {
+            width: 100%;
             max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            padding: 20px 15px 100px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--primary-pink);
+        /* Immagine del manifesto */
+        .poster-wrapper {
+            width: 100%;
+            background: #1a1a24;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(255, 64, 129, 0.15);
+            border: 1px solid rgba(255, 64, 129, 0.2);
+            text-align: center;
         }
 
-        .poster-img {
+        .poster-wrapper img {
             width: 100%;
             height: auto;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: block;
         }
 
-        .audio-player-container {
-            text-align: center;
-            background-color: var(--light-pink);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-top: 1rem;
+        /* Barra audio fluttuante in basso */
+        .audio-bar {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 600px;
+            background: rgba(26, 26, 36, 0.95);
+            border: 1px solid rgba(255, 64, 129, 0.4);
+            border-radius: 50px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .audio-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ff80ab;
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap;
         }
 
         audio {
             width: 100%;
-            max-width: 500px;
-            margin-top: 1rem;
+            height: 36px;
         }
 
-        h2 {
-            color: var(--dark-pink);
-            border-bottom: 2px solid var(--light-pink);
-            padding-bottom: 0.5rem;
-        }
-
-        ul {
-            padding-left: 1.2rem;
-        }
-
-        li {
-            margin-bottom: 0.8rem;
-        }
-
-        .highlight {
-            font-weight: bold;
-            color: var(--primary-pink);
-        }
-
-        footer {
-            text-align: center;
-            padding: 1.5rem;
-            background-color: #f1f1f1;
-            color: #666;
-            font-size: 0.9rem;
-            margin-top: 3rem;
-        }
-
-        .ai-notice {
-            font-size: 0.85rem;
-            color: #777;
-            font-style: italic;
-            margin-top: 1rem;
+        /* Personalizzazione player audio per dark mode */
+        audio::-webkit-media-controls-panel {
+            background-color: transparent;
         }
     </style>
 </head>
 <body>
 
-    <header>
+    <!-- Overlay per l'attivazione audio -->
+    <div class="overlay" id="overlay">
         <h1>Ottobre Rosa 2026</h1>
-        <p>Gazzera per la Prevenzione • Negozi in Rosa</p>
-    </header>
-
-    <div class="container">
-        
-        <!-- SEZIONE MUSICA / JINGLE -->
-        <div class="card">
-            <h2>🎵 Ascolta il Jingle Ufficiale</h2>
-            <p>Ascolta la canzone dedicata all'iniziativa <strong>"Ogni Spesa è un Gesto d'Amore"</strong>:</p>
-            <div class="audio-player-container">
-                <p><strong>Il nostro patto di cuore</strong> (Jingle Ottobre Rosa)</p>
-                <audio controls>
-                    <source src="musica.mp3" type="audio/mpeg">
-                    Il tuo browser non supporta il riproduttore audio.
-                </audio>
-                <p class="ai-notice">Nota: Brano e testo generati tramite intelligenza artificiale per scopi promozionali.</p>
-            </div>
-        </div>
-
-        <!-- SEZIONE VOLANTINO -->
-        <div class="card">
-            <h2>📄 Il Volantino dell'Iniziativa</h2>
-            <img src="volantino.jpg" alt="Volantino Ottobre Rosa 2026 Gazzera" class="poster-img">
-        </div>
-
-        <!-- SEZIONE INFORMAZIONI -->
-        <div class="card">
-            <h2>💖 Come Funziona l'Iniziativa</h2>
-            <p>Per tutto il mese di ottobre, fare gli acquisti nei negozi della Gazzera non significa solo scegliere la qualità e la cortesia di vicinato, ma <span class="highlight">finanziare direttamente la lotta contro il tumore al seno</span>.</p>
-            
-            <ul>
-                <li><strong>Fai la tua spesa:</strong> Acquista nei negozi e servizi aderenti della Gazzera e richiedi la tua <strong>PINK GIFT CARD GAZZERA</strong>.</li>
-                <li><strong>Partecipa:</strong> Compila la card e imbucala nella borsetta rosa presente nei negozi.</li>
-                <li><strong>Donazione:</strong> L'Associazione Commercianti Artigiani Gazzera donerà 1 € per ciascuna carta raccolta alla ricerca sul cancro.</li>
-                <li><strong>Premi:</strong> A fine ottobre verranno estratte 5 Pink Gift Card che riceveranno ciascuna un buono spesa da 25 €.</li>
-            </ul>
-
-            <p style="text-align: center; font-size: 1.1rem; margin-top: 1.5rem;">
-                <strong>Più volte scegli la Gazzera, più la prevenzione cresce!</strong>
-            </p>
-        </div>
-
+        <p>Gazzera per la Prevenzione<br>Clicca qui sotto per aprire il manifesto e ascoltare il jingle dedicato.</p>
+        <button class="btn-start" onclick="startExperience()">
+            ▶ ENTRA E ASCOLTA
+        </button>
     </div>
 
-    <footer>
-        <p><strong>Associazione Commercianti Artigiani Gazzera</strong></p>
-        <p>In collaborazione con il Comune di Venezia</p>
-        <p>Info: 351 8731413</p>
-    </footer>
+    <!-- Contenuto principale con il manifesto -->
+    <div class="main-container">
+        <div class="poster-wrapper">
+            <img src="volantino.jpg" alt="Manifesto Ottobre Rosa 2026 Gazzera">
+        </div>
+    </div>
+
+    <!-- Player audio fisso in basso -->
+    <div class="audio-bar">
+        <div class="audio-info">
+            🎵 Jingle Ottobre Rosa
+        </div>
+        <audio id="bgAudio" controls loop preload="auto">
+            <source src="musica.mp3" type="audio/mpeg">
+            Il tuo browser non supporta il riproduttore audio.
+        </audio>
+    </div>
+
+    <script>
+        function startExperience() {
+            var audio = document.getElementById('bgAudio');
+            var overlay = document.getElementById('overlay');
+            
+            // Avvia la musica
+            audio.play().catch(function(error) {
+                console.log("Autoplay bloccato dal browser: ", error);
+            });
+            
+            // Nasconde l'overlay
+            overlay.classList.add('hidden');
+        }
+    </script>
 
 </body>
 </html>
